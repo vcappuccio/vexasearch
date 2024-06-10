@@ -23,9 +23,7 @@ export const encodeSlug = (title: string) => {
   }
 
   slug = slug
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "")
-    .replace(/-+/g, "-")
+    .replace(/[^\w\s-]+/g, "") 
     .replace(/%/g, "");
 
   if (urls) {
@@ -36,7 +34,7 @@ export const encodeSlug = (title: string) => {
     });
   }
 
-  return `${slug}-${randomAlphaNumeric(5)}`;
+  return slug;
 };
 
 export const decodeSlug = (slug: string) => {
