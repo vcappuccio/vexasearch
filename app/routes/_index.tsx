@@ -16,6 +16,7 @@ export const meta: MetaFunction = () => {
 };
 
 export async function action({ request }: ActionFunctionArgs) {
+  console.log("Calling action function in _index.tsx");
   let formData = await request.formData();
   const values = Object.fromEntries(formData) as { query: string };
 
@@ -34,14 +35,14 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function Index() {
   return (
-    <div className="flex p-6 flex-col items-center justify-center h-screen  bg-[#0C0C0C] text-white w-full">
+    <div className="flex p-6 flex-col items-center justify-center h-screen bg-[#0C0C0C] text-white w-full">
       <div className="mb-6">
         <h1 className="text-2xl text-center text-white">
           What you want to do today?
         </h1>
       </div>
       <HomeForm />
-      <div className="mt-6 w-full  max-w-4xl">
+      <div className="mt-6 w-full max-w-4xl">
         <HomeExampleSearch />
       </div>
     </div>

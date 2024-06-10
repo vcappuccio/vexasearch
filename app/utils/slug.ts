@@ -9,9 +9,11 @@ export const randomAlphaNumeric = (length: number) => {
 };
 
 export const encodeSlug = (title: string) => {
+  console.log("Calling encodeSlug function with title:", title);
   return `${title}-${randomAlphaNumeric(5)}`
     .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "");
+    .replace(/[^\w-]+/g, "")
+    .replace(/-+/g, "-");
 };
 
 export const decodeSlug = (slug: string) => {

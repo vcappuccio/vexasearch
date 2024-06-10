@@ -1,8 +1,9 @@
 import { Form } from "@remix-run/react";
 import React from "react";
+import { decodeSlug } from "~/utils/slug";
 
 export const SearchForm = ({ q }: { q: string }) => {
-  const [query, setQuery] = React.useState(q);
+  const [query, setQuery] = React.useState(decodeSlug(q));
 
   return (
     <Form method="post" className="w-full  max-w-2xl">
@@ -23,8 +24,8 @@ export const SearchForm = ({ q }: { q: string }) => {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="lucide lucide-sparkles h-6 w-6"
             >
               <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
