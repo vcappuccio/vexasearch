@@ -10,13 +10,36 @@ export const randomAlphaNumeric = (length: number) => {
 
 export const encodeSlug = (title: string) => {
   console.log("Calling encodeSlug function with title:", title);
-  return `${title}-${randomAlphaNumeric(5)}`
+  const urlPattern = /(http|https):\/\/[^\s$.?#].[^\s]*/g;
+  const urls = title.match(urlPattern);
+  let slug = title;
+
+  if (urls) {
+    urls.forEach((url, index) => {
+      const encodedUrl = encodeURIComponent(url);
+      const placeholder = `__URL${index}__`;
+      slug = slug.replace(url, placeholder);
+    });
+  }
+
+  slug = slug
     .replace(/ /g, "-")
     .replace(/[^\w-]+/g, "")
-    .replace(/-+/g, "-");
+    .replace(/-+/g, "-")
+    .replace(/%/g, "");
+
+  if (urls) {
+    urls.forEach((url, index) => {
+      const encodedUrl = encodeURIComponent(url);
+      const placeholder = `__URL${index}__`;
+      slug = slug.replace(placeholder, encodedUrl);
+    });
+  }
+
+  return `${slug}-${randomAlphaNumeric(5)}`;
 };
 
 export const decodeSlug = (slug: string) => {
   slug = slug.split("-").slice(0, -1).join("-");
-  return slug.replace(/-/g, " ");
+  return decodeURIComponent(slug.replace(/-/g, " "));
 };

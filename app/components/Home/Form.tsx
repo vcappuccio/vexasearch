@@ -4,7 +4,6 @@ import React from "react";
 export const HomeForm = () => {
   const [query, setQuery] = React.useState("");
 
-  console.log("Rendering HomeForm component");
 
   return (
     <Form method="post" className="w-full max-w-3xl">

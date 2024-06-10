@@ -21,9 +21,10 @@ export const HomeExampleSearchCard = ({
 
 export const HomeExampleSearch = () => {
   const query = [
+    "What available models are mentioned on this site: https://readme.fireworks.ai/docs/querying-embeddings-models?",
     "Generate Image of Astronaut Riding a Horse",
-    "Generate Image of a Cat dancing"
-   
+    "When is Juventus' next game?",
+    "How many kilometers from Washingto D.C. to Miami Beach?",
   ];
 
   const [searchQuery, setSearchQuery] = React.useState("");
